@@ -53,7 +53,7 @@ public class playerControl : MonoBehaviour {
 
 	void FixedUpdate(){
 
-		rb.AddRelativeForce (inputVector * 10f);
+		rb.AddRelativeForce (inputVector * 3000f);
 	}
 
 	void OnTriggerEnter(Collider other) {
