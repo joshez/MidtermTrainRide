@@ -14,6 +14,12 @@ public class BackgroundScroll : MonoBehaviour {
 	public float currentZ;
 	public float currentZ2;
 	public float moveSpeed;
+	public float endTime;
+
+	public GameObject invis;
+
+
+	public GameObject soundMan;
 
 	void Start(){
 		GameObject[] backgrounds = GameObject.FindGameObjectsWithTag("background");
@@ -45,11 +51,13 @@ public class BackgroundScroll : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.E)) {
 			Time.timeScale = 50;
 			moveSpeed = 30f;
+			soundMan.GetComponent<AudioSource> ().pitch = 2;
 		}
 
 		if (Input.GetKeyDown (KeyCode.Q)) {
 			Time.timeScale = 1;
 			moveSpeed = .6f;
+			soundMan.GetComponent<AudioSource> ().pitch = 1;
 		}
 
 
@@ -114,7 +122,7 @@ public class BackgroundScroll : MonoBehaviour {
 			background3.transform.position = new Vector3 (background3.transform.position.x, background3.transform.position.y, currentZ2);
 		}
 
-		if (Time.time > 600) {
+		if (Time.timeSinceLevelLoad > endTime) {
 			if (currentZ == -400f) {
 				nowMove = 8;
 			}
@@ -127,6 +135,8 @@ public class BackgroundScroll : MonoBehaviour {
 			if ((background4.transform.position.z < -11f) && (background4.transform.position.z > -301f)) {
 				background4.transform.position = new Vector3 (background4.transform.position.x, background4.transform.position.y, background4.transform.position.z + moveSpeed);
 			}
+
+			invis.SetActive (false);
 		}
 	}
 }

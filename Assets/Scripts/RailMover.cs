@@ -5,9 +5,11 @@ using UnityEngine;
 public class RailMover : MonoBehaviour {
 
 	public float moveSpeed;
+	float endTime;
 
 	void Start(){
 		moveSpeed = 1.8f;
+		endTime = GetComponent<BackgroundScroll> ().endTime;
 	}
 
 	// Update is called once per frame
@@ -22,7 +24,7 @@ public class RailMover : MonoBehaviour {
 			moveSpeed = 1.8f;
 		}
 
-		if (Time.time > 600f) {
+		if (Time.timeSinceLevelLoad > endTime) {
 			moveSpeed = 0;
 		}
 

@@ -9,6 +9,7 @@ public class TrainShake : MonoBehaviour {
 	public float offsetZ;
 	public float offsetTime;
 	Vector3 here;
+	float endTime;
 
 	// Use this for initialization
 	void Start () {
@@ -17,11 +18,12 @@ public class TrainShake : MonoBehaviour {
 		offsetZ = 0;
 		offsetTime = 0;
 		here = GetComponent<Transform> ().position;
+		endTime = GameObject.FindGameObjectWithTag ("retrieval").GetComponent<BackgroundScroll> ().endTime;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if ((offsetTime <= 0) && (Time.time < 600)) {
+		if ((offsetTime <= 0) && (Time.timeSinceLevelLoad < endTime)) {
 			offsetX = Random.value * .25f;
 			offsetY = Random.value * .25f;
 			offsetZ = Random.value * .25f;
